@@ -134,7 +134,7 @@ app.get('/api/places/:id', async (req,res) => {
 
 app.get('/api/places/search', async (req,res) => {
   const {title} = req.body.trim();
-  const response = await Test.find({title:{$regex: new RegExp('^'+title+'.*','i')}});
+  const response = await Test.find({title:{$regex: new RegExp('^'+title+'.*','i')}}).exec();
   res.json(response);
 })
 
