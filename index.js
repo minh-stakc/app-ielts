@@ -132,4 +132,10 @@ app.get('/api/places/:id', async (req,res) => {
   res.json(await Test.findById(id));
 });
 
+app.get('/api/places/search', async (req,res) => {
+  const {title} = req.body.trim();
+  const response = await Test.find({title:{$regex: new RegExp('^'+title+'.*','i')}});
+  res.json(response);
+})
+
 app.listen(4000);
